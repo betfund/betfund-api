@@ -22,7 +22,7 @@ class Settings(BaseSettings):
             return v
         raise ValueError(v)
 
-    PROJECT_NAME: str = "Betfund Authentication API"
+    PROJECT_NAME: str = "Betfund API"
     SENTRY_DSN: Optional[HttpUrl] = "http://test.com"
 
     @validator("SENTRY_DSN", pre=True)
@@ -50,12 +50,12 @@ class Settings(BaseSettings):
         )
 
     SMTP_TLS: bool = True
-    SMTP_PORT: Optional[int] = 1025
-    SMTP_HOST: Optional[str] = "localhost"
-    SMTP_USER: Optional[str] = "admin"
-    SMTP_PASSWORD: Optional[str] = None
+    SMTP_PORT: Optional[int] = 465
+    SMTP_HOST: Optional[str] = ""
+    SMTP_USER: Optional[str] = ""
+    SMTP_PASSWORD: Optional[str] = ""
     EMAILS_FROM_EMAIL: Optional[EmailStr] = "admin@betfund.com"
-    EMAILS_FROM_NAME: Optional[str] = None
+    EMAILS_FROM_NAME: Optional[str] = "Betfund Administrator"
 
     @validator("EMAILS_FROM_NAME")
     def get_project_name(cls, v: Optional[str], values: Dict[str, Any]) -> str:
@@ -78,7 +78,7 @@ class Settings(BaseSettings):
     EMAIL_TEST_USER: EmailStr = "test@example.com"  # type: ignore
     FIRST_SUPERUSER: EmailStr = "admin@betfund.com"
     FIRST_SUPERUSER_PASSWORD: str = "password"
-    USERS_OPEN_REGISTRATION: bool = False
+    USERS_OPEN_REGISTRATION: bool = True
 
     class Config:
         case_sensitive = True

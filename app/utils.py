@@ -16,6 +16,19 @@ def send_email(
     html_template: str = "",
     environment: Dict[str, Any] = {},
 ) -> None:
+    """Sends an email to user.
+
+    Params
+    ------
+    email_to : str
+        Email address of user.
+    subject_template : str
+        Email subject line template for Jinja population.
+    html_template : str
+        Email body template for Jinja population.
+    environment : dict
+        Handling Jinja environment.
+    """
     # TODO: Replace with Betfund Solicitor
     assert settings.EMAILS_ENABLED, "no provided configuration for email variables"
     message = emails.Message(
