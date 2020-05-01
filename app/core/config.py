@@ -1,6 +1,7 @@
 import secrets
 from typing import Any, Dict, List, Optional, Union
 
+from decouple import config
 from pydantic import AnyHttpUrl, BaseSettings, EmailStr, HttpUrl, PostgresDsn, validator
 
 
@@ -10,7 +11,8 @@ class Settings(BaseSettings):
 
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8  # 8 days
     SERVER_NAME: str = "local"
-    SERVER_HOST: AnyHttpUrl = "http://localhost:8000"
+    SERVER_BACKEND: AnyHttpUrl = "http://localhost:8000"
+    SERVER_FRONTEND: AnyHttpUrl = "http://localhost:3000"
 
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = ["http://localhost:3000", "http://10.0.0.6:3000"]
 
@@ -49,6 +51,7 @@ class Settings(BaseSettings):
             path=f"/{values.get('POSTGRES_DB') or ''}",
         )
 
+    SENDGRID_API_KEY: str = config('SENDGRID_API_KEY', cast=str)
     SMTP_TLS: bool = True
     SMTP_PORT: Optional[int] = 465
     SMTP_HOST: Optional[str] = ""

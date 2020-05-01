@@ -80,7 +80,7 @@ def recover_password(email: str, db: Session = Depends(deps.get_db)) -> Any:
     return {"msg": "Password recovery email sent."}
 
 
-@router.post("/reset-password/", response_model=schemas.Msg)
+@router.post("/reset-password", response_model=schemas.Msg)
 def reset_password(
     token: str = Body(...),
     new_password: str = Body(...),
@@ -102,6 +102,5 @@ def reset_password(
         raise HTTPException(status_code=400, detail="Inactive user")
     hashed_password = get_password_hash(new_password)
     user.hashed_password = hashed_password
-    db.add(user)
     db.commit()
     return {"msg": "Password updated successfully"}
