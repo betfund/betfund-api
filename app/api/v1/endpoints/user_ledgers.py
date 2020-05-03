@@ -57,8 +57,8 @@ def read_transaction(
     Get item by ID.
     """
     transaction = crud.user_ledger.get(db=db, id=id)
-    if not item:
+    if not transaction:
         raise HTTPException(status_code=404, detail="Transaction not found")
-    if not crud.user.is_superuser(current_user) and (item.owner_id != current_user.id):
+    if not crud.user.is_superuser(current_user) and (transaction.user_id != current_user.id):
         raise HTTPException(status_code=400, detail="Not enough permissions")
-    return item
+    return transaction
