@@ -1,3 +1,4 @@
+import os
 import secrets
 from typing import Any, Dict, List, Optional, Union
 
@@ -85,6 +86,10 @@ class Settings(BaseSettings):
 
     class Config:
         case_sensitive = True
+
+    MONGO_CONNECTION: str = os.getenv("MONGO_CONNECTION")
+    MONGO_DATABASE: str = "betfund"
+    MONGO_EVENTS_COLLECTION: str = "upcomingEvents"
 
 
 settings = Settings()
