@@ -8,7 +8,8 @@ class UserBase(BaseModel):
     email: Optional[EmailStr] = None
     is_active: Optional[bool] = True
     is_superuser: bool = False
-    full_name: Optional[str] = None
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
 
 
 # Properties to receive via API on creation
@@ -22,6 +23,7 @@ class UserUpdate(UserBase):
     password: Optional[str] = None
 
 
+# Properties shared by models stored in DB
 class UserInDBBase(UserBase):
     id: Optional[int] = None
 
