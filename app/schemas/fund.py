@@ -10,7 +10,6 @@ class FundBase(BaseModel):
     description: Optional[str] = None
     timestamp: Optional[datetime] = None
     details: Optional[dict] = None
-    owner_id: Optional[int] = None
 
 
 # Properties to receive on item creation
