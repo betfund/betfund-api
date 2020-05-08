@@ -6,6 +6,7 @@ from app.core.config import settings
 async def get_upcoming_events(
     conn: AsyncIOMotorClient,
     as_of: str,
+    sport_id: str,
     limit: int = 500,
     offset: int = 0
 ):
@@ -14,6 +15,7 @@ async def get_upcoming_events(
     Args:
         conn (AsyncIOMotorClient): MongoDB connection
         as_of (str): Epoch timestamp floor for events to fetch
+        sport_id (str): Internal id for sport to fetch
         limit (int): Length limit of result set
         offset (int): Starting point of result set
     Returns:
@@ -22,13 +24,19 @@ async def get_upcoming_events(
     database = settings.MONGO_DATABASE
     collection = settings.MONGO_EVENTS_COLLECTION
 
-    # Establish collection connection and query
-    cursor = conn[database][collection].find(
-        filter={
+    filter = {
             "data.updated_at": {
                 "$gt": as_of  # greater than operator
-            }
-        },
+            },
+            "data.sport_id": sport_id,
+        }
+
+    if not sport_id:
+        del filter["data.sport_id"]
+
+    # Establish collection connection and query
+    cursor = conn[database][collection].find(
+        filter=filter,
         limit=limit,
         skip=offset
     )

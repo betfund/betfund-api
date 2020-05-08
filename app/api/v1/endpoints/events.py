@@ -13,6 +13,7 @@ router = APIRouter()
 @router.get("/upcoming")
 async def fetch_events(
     as_of: str = "",
+    sport_id: str = "",
     limit: int = 500,
     offset: int = 0,
     db: AsyncIOMotorClient = Depends(mongodb.get_database)
@@ -21,7 +22,11 @@ async def fetch_events(
     Retrieve Upcoming Events.
     """
     events = await get_upcoming_events(
-        conn=db, as_of=as_of, limit=limit, offset=offset
+        conn=db,
+        as_of=as_of,
+        sport_id=sport_id,
+        limit=limit,
+        offset=offset
     )
 
     return {
