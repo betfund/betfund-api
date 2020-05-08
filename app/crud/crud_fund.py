@@ -34,7 +34,4 @@ class CRUDFund(CRUDBase[Fund, FundCreate, FundUpdate]):
             .all()
         )
 
-
-
-
 fund = CRUDFund(Fund)
