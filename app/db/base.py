@@ -5,3 +5,4 @@ from app.models.user import User  # noqa
 from app.models.user_ledger import UserLedger # noqa
 from app.models.fund import Fund # noqa
 from app.models.fund_user import FundUser # noqa
+from app.models.fund_user_ledger import FundUserLedger # noqa

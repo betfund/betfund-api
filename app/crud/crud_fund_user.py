@@ -22,7 +22,10 @@ class CRUDFundUser(CRUDBase[FundUser, FundUserCreate, FundUserUpdate]):
         return (
             db.query(self.model)
             .filter(self.model.fund_id == fund_id)
+            .offset(skip)
+            .limit(limit)
             .all()
         )
+
 
 fund_user = CRUDFundUser(FundUser)

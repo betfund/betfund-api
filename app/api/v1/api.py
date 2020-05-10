@@ -4,6 +4,7 @@ from app.api.v1.endpoints import (
     events,
     funds,
     fund_users,
+    fund_user_ledgers,
     login,
     users,
     user_ledgers,
@@ -16,5 +17,6 @@ api_router.include_router(users.router, prefix="/users", tags=["Users"])
 api_router.include_router(user_ledgers.router, prefix="/user-ledgers", tags=["User Ledgers"])
 api_router.include_router(funds.router, prefix="/funds", tags=["Funds"])
 api_router.include_router(fund_users.router, prefix="/fund-users", tags=["Fund Users"])
-api_router.include_router(utils.router, prefix="/utils", tags=["Utils"])
+api_router.include_router(fund_user_ledgers.router, prefix="/fund-user-ledgers", tags=["Fund User Ledgers"])
+# api_router.include_router(utils.router, prefix="/utils", tags=["Utils"])
 api_router.include_router(events.router, prefix="/events", tags=["Events"])

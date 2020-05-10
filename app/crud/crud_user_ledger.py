@@ -28,7 +28,7 @@ class CRUDUserLedger(CRUDBase[UserLedger, UserLedgerCreate, UserLedgerUpdate]):
     ) -> List[UserLedger]:
         return (
             db.query(self.model)
-            .filter(UserLedger.user_id == owner_id)
+            .filter(self.model.user_id == owner_id)
             .offset(skip)
             .limit(limit)
             .all()
