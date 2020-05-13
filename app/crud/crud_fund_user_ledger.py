@@ -14,7 +14,11 @@ from app.schemas.fund_user_ledger import FundUserLedgerCreate, FundUserLedgerUpd
 
 
 class CRUDFundUserLedger(
-    CRUDBase[FundUserLedger, FundUserLedgerCreate, FundUserLedgerUpdate]
+    CRUDBase[
+        FundUserLedger,
+        FundUserLedgerCreate,
+        FundUserLedgerUpdate
+    ]
 ):
     def create_with_owner(
         self,
@@ -24,6 +28,7 @@ class CRUDFundUserLedger(
         owner_id: int,
         fund_id: int
     ) -> FundUserLedger:
+        """Creates a ledger transaction for a fund user."""
 
         # Get the request data
         obj_in_data = jsonable_encoder(obj_in)
