@@ -44,17 +44,17 @@ def create_fund(
     return fund
 
 
-@router.get("/{id}", response_model=schemas.Fund)
+@router.get("/{fund_id}", response_model=schemas.Fund)
 def read_fund(
     *,
     db: Session = Depends(deps.get_db),
-    id: int,
+    fund_id: int,
     current_user: models.User = Depends(deps.get_current_active_user),
 ) -> Any:
     """
     Get fund by ID.
     """
-    fund = crud.fund.get(db=db, id=id)
+    fund = crud.fund.get(db=db, id=fund_id)
     if not fund:
         raise HTTPException(status_code=404, detail="Fund not found")
     return fund

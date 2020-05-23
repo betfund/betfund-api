@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, ForeignKey, UniqueConstraint
+from sqlalchemy import Column, DateTime, Integer, ForeignKey, UniqueConstraint
 from sqlalchemy.sql import func
 
 from app.db.base_class import Base
@@ -32,6 +32,7 @@ class FundUser(Base):
     )
 
     id = Column(Integer, primary_key=True)
+    timestamp = Column(DateTime(timezone=True), default=func.now())
     fund_id = Column(Integer, ForeignKey("funds.id"), nullable=False)
     user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
 
