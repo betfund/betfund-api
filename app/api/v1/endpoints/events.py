@@ -12,7 +12,7 @@ router = APIRouter()
 
 @router.get("/upcoming")
 async def fetch_events(
-    as_of: str = "",
+    as_of: int = 0,
     sport_id: str = "",
     limit: int = 500,
     offset: int = 0,
