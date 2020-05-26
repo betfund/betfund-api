@@ -5,7 +5,7 @@ from app.core.config import settings
 
 async def get_upcoming_events(
     conn: AsyncIOMotorClient,
-    as_of: str,
+    as_of: int,
     sport_id: str,
     limit: int = 500,
     offset: int = 0
@@ -25,7 +25,7 @@ async def get_upcoming_events(
     collection = settings.MONGO_EVENTS_COLLECTION
 
     filter = {
-            "data.updated_at": {
+            "data.time": {
                 "$gt": as_of  # greater than operator
             },
             "data.sport_id": sport_id,
